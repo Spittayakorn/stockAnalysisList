@@ -1,0 +1,24 @@
+drop database stock;
+create database stock;
+
+use stock;
+
+create table items(itemN int(10) unsigned auto_increment primary key,
+itemName varchar(100) not null);
+
+create table stockList(stockN int(10) unsigned auto_increment primary key,
+stockDate datetime
+);
+
+create table stockAnalysis(stockId int(10) unsigned auto_increment primary key,
+take int(10),
+exist int(10),
+used int(10),
+lefted int(10),
+added int(10),
+comment varchar(100),
+itemN int(10),
+stockN int(10),
+foreign key(itemN) references items(itemN),
+foreign key(stockN) references stockList(stockN)
+);

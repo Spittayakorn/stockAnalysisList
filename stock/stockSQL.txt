@@ -1,0 +1,25 @@
+drop database stock;
+create database stock;
+
+use stock;
+
+create table items(itemN int(10) unsigned auto_increment primary key,
+itemName varchar(100) not null);
+
+create table stockList(stockN int(10) unsigned auto_increment primary key,
+stockDate datetime
+);
+
+create table stockAnalysis(stockId int(10) unsigned auto_increment primary key,
+take double(40,2),
+exist double(40,2),
+used double(40,2),
+lefted double(40,2),
+added double(40,2),
+itemN int(10) unsigned,
+stockN int(10) unsigned,
+foreign key(itemN) references items(itemN),
+foreign key(stockN) references stockList(stockN)
+);
+
+mysqldump -u root -p --databases stock > backupStock.sql
